@@ -1,0 +1,7 @@
+.SearchBar .SearchBarContent {
+    display: flex;
+}
+
+.SearchBar .SearchBarContent .SearchBarComponent {
+    margin: auto 5px;
+}

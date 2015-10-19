@@ -1,0 +1,14 @@
+.Channel .ChannelContent {
+    padding-top: 10px;
+    display: -webkit-flex;
+    display: flex;
+    overflow-x: auto;
+}
+
+.Channel .ChannelTitle {
+    text-align: center;
+}
+
+.Channel .ChannelContent > div {
+    margin: auto 10px;
+}
