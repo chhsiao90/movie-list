@@ -41,15 +41,19 @@ class Channel extends Component {
             <div className="Channel">
                 <h3 className="ChannelTitle">{`Channel ${channelNum}`}</h3>
                 <div className="ChannelContent">
-                    <div className="SelectArrow">
-                        <Link to={prevPath}>Prev</Link>
+                    <div className="SelectArrowContainer">
+                        <div className="SelectArrow">
+                            <Link to={prevPath}>Prev</Link>
+                        </div>
+                        <div className="SelectArrow">
+                            <Link to={nextPath}>Next</Link>
+                        </div>
                     </div>
-                    {moviesInChannel.map((movies) =>
-                        <Movies {...movies}
-                           key={movies.day} />
-                    )}
-                    <div className="SelectArrow">
-                        <Link to={nextPath}>Next</Link>
+                    <div className="MoviesContainer">
+                        {moviesInChannel.map((movies) =>
+                            <Movies {...movies}
+                               key={movies.day} />
+                        )}
                     </div>
                 </div>
             </div>

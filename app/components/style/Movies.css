@@ -1,3 +1,7 @@
 .Movies {
     width: 200px;
 }
+
+.Movies .DayTitle {
+    text-align: center;
+}

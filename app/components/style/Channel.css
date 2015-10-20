@@ -1,14 +1,24 @@
 .Channel .ChannelContent {
-    padding-top: 10px;
-    display: -webkit-flex;
+    padding: 10px auto;
+    width: 100%;
     display: flex;
-    overflow-x: auto;
+    flex-direction: column;
 }
 
 .Channel .ChannelTitle {
     text-align: center;
 }
 
-.Channel .ChannelContent > div {
-    margin: auto 10px;
+.Channel .ChannelContent .MoviesContainer {
+    overflow-x: auto;
+    display: flex;
+}
+
+.Channel .ChannelContent .SelectArrowContainer {
+    margin: auto;
+}
+
+.Channel .ChannelContent .SelectArrow {
+    display: inline-block;
+    padding: 0 10px;
 }

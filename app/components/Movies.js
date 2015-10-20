@@ -1,12 +1,12 @@
 import React, {Component} from "react";
 import "./style/Movies.css";
 
-class MoviesInDay extends Component {
+class Movies extends Component {
     render() {
         const {day, movies} = this.props;
         return (
             <div className="Movies">
-                <div className="DayTitle">{day}</div>
+                <h3 className="DayTitle">{day}</h3>
                 <table>
                     <tbody>
                         {movies.map((movie) => (
@@ -23,4 +23,4 @@ class MoviesInDay extends Component {
     }
 }
 
-export default MoviesInDay;
+export default Movies;
