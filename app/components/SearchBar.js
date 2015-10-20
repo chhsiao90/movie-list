@@ -4,8 +4,6 @@ import DatePicker from "react-datepicker";
 import moment from "moment";
 import util from "util";
 import app from "../config/app";
-import "./style/react-datepicker.css";
-import "./style/SearchBar.css";
 
 const defaultChannel = app.channels[0];
 const dateFormat = app.dateFormat;

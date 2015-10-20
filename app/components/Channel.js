@@ -1,14 +1,36 @@
 import React, {Component} from "react";
 import {Link} from "react-router";
+import Transmit from "react-transmit";
 import moment from "moment";
 import app from "../config/app";
 import Movies from "./Movies";
-import "./style/Channel.css";
 
 const channels = app.channels;
 
 class Channel extends Component {
+    componentWillMount() {
+        const {channelNum, startDate, endDate} = this.props.params;
+        const {enableBlock, disableBlock} = this.props;
+        enableBlock();
+        this.props.transmit.forceFetch({
+            channelNum,
+            dates: this.toDateIntervalArray(moment(startDate), moment(endDate))
+        }).then(() => disableBlock());
+    }
+
     componentWillReceiveProps(nextProps) {
+        const {channelNum, startDate, endDate} = this.props.params;
+        const {enableBlock, disableBlock} = this.props;
+        const nextChannelNum = nextProps.params.channelNum;
+        const nextStartDate = nextProps.params.startDate;
+        const nextEndDate = nextProps.params.endDate;
+        if (nextChannelNum !== channelNum) {
+            enableBlock();
+            this.props.transmit.forceFetch({
+                channelNum: nextChannelNum,
+                dates: this.toDateIntervalArray(moment(nextStartDate), moment(nextEndDate))
+            }).then(() => disableBlock());
+        }
     }
 
     lookIndexInChannels(channelNum) {
@@ -40,9 +62,9 @@ class Channel extends Component {
     }
 
     render() {
-        const {channelNum, startDate, endDate} = this.props.params;
+        const {channelNum, startDate, endDate } = this.props.params;
+        const {moviesList, enableBlock, disableBlock} = this.props;
 
-        const dateIntervalArray = toDateIntervalArray(moment(startDate), moment(endDate));
         const prev = this.prevChannelNum(channelNum);
         const prevPath = `/channel/${startDate}/${endDate}/${prev}`;
         const next = this.nextChannelNum(channelNum);
@@ -60,10 +82,9 @@ class Channel extends Component {
                         </div>
                     </div>
                     <div className="MoviesContainer">
-                        {dateIntervalArray.map((date) =>
-                            <Movies date={date}
-                                channelNum={channelNum}
-                                key={date} />
+                        {moviesList.map((movies) =>
+                            <Movies movies={movies}
+                                key={movies.date} />
                         )}
                     </div>
                 </div>
@@ -72,4 +93,15 @@ class Channel extends Component {
     }
 }
 
-export default Channel;
+export default Transmit.createContainer(Channel, {
+    initialVariables: {
+        dates: []
+    },
+    fragments: {
+        moviesList({channelNum, dates}) {
+            return Promise.all(
+                dates.map((date) => Movies.getFragment("movies", {channelNum, date}))
+            );
+        }
+    }
+});

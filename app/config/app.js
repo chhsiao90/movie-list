@@ -7,8 +7,8 @@ app.dateFormat = "YYYY-MM-DD";
 app.crawler = {};
 
 app.crawler.options = {
-    maxConnections: 1,
-    rateLimits: 1000
+    maxConnections: 5,
+    rateLimits: 200
 };
 
 app.crawler.dada = {};
