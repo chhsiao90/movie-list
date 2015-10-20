@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {Link} from "react-router";
+import moment from "moment";
 import app from "../config/app";
-import MovieList from "../data/MovieList";
 import Movies from "./Movies";
 import "./style/Channel.css";
 
@@ -29,10 +29,20 @@ class Channel extends Component {
         return channels[nextIndex];
     }
 
+    toDateIntervalArray(startDate, endDate) {
+        let dateArray = [];
+        let currDate = moment(startDate);
+        while (endDate.isAfter(currDate)) {
+            dateArray.push(currDate.format("YYYY-MM-DD"));
+            currDate.add(1, "days");
+        }
+        return dateArray;
+    }
+
     render() {
         const {channelNum, startDate, endDate} = this.props.params;
-        const moviesInChannel = MovieList[channelNum] || [];
 
+        const dateIntervalArray = toDateIntervalArray(moment(startDate), moment(endDate));
         const prev = this.prevChannelNum(channelNum);
         const prevPath = `/channel/${startDate}/${endDate}/${prev}`;
         const next = this.nextChannelNum(channelNum);
@@ -50,9 +60,10 @@ class Channel extends Component {
                         </div>
                     </div>
                     <div className="MoviesContainer">
-                        {moviesInChannel.map((movies) =>
-                            <Movies {...movies}
-                               key={movies.day} />
+                        {dateIntervalArray.map((date) =>
+                            <Movies date={date}
+                                channelNum={channelNum}
+                                key={date} />
                         )}
                     </div>
                 </div>
