@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import Header from "./Header";
 import SearchBar from "./SearchBar";
-import Block from "./Block";
 
 class App extends Component {
     constructor(props) {
@@ -37,7 +36,6 @@ class App extends Component {
                             disableBlock: this.disableBlock.bind(this)
                     })}
                 </div>
-                <Block block={this.state.block} />
             </div>
         );
     }

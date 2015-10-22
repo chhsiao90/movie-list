@@ -1,8 +1,9 @@
 .Channel .ChannelContent {
-    padding: 10px auto;
+    padding: 10px 0;
     width: 100%;
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 .Channel .ChannelTitle {
@@ -20,4 +21,30 @@
 .Channel .ChannelContent .SelectArrow {
     display: inline-block;
     padding: 0 10px;
+}
+
+.Channel .ChannelContent .MoviesContainer .Block-Enable {
+    z-index: 1000;
+    border: none;
+    margin: 0px;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    opacity: 1;
+    cursor: wait;
+    position: absolute;
+    background-color: white;
+}
+
+.Channel .ChannelContent .MoviesContainer .BlockMessage {
+    z-index = 1001;
+    position: absolute;
+    border: none;
+    padding: 20px;
+    margin: 0px;
+    color: black;
+    text-align: center;
+    cursor: wait;
+    background-color: white;
 }
