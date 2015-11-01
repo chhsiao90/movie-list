@@ -48,12 +48,12 @@ class SearchBar extends Component {
                     <div className="SearchBarComponent">
                         <DatePicker
                             selected={this.state.startDate}
-                            onChange={this.onStartDateChanged} />
+                            onChange={this.onStartDateChanged.bind(this)} />
                         </div>
                     <div className="SearchBarComponent">
                         <DatePicker
                             selected={this.state.endDate}
-                            onChange={this.onEndDateChanged} />
+                            onChange={this.onEndDateChanged.bind(this)} />
                     </div>
                     <div className="SearchBarComponent">
                         <Link className="SubmitBtn" to={this.state.path}>

@@ -18,7 +18,7 @@
     "crawler": "^0.4.3",
     "moment": "^2.10.6",
     "react": "^0.14.0",
-    "react-datepicker": "^0.14.4",
+    "react-datepicker": "^0.15.2",
     "react-router": "^1.0.0-rc3",
     "react-select": "^0.8.0",
     "react-transmit": "^3.0.7"
